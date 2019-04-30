@@ -3,10 +3,67 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>gmark - 爬虫 & markdown</title>
-    <link th:href="@{/static/layui/css/layui.css}" rel="stylesheet"/>
+    <link th:href="@{../layui/css/layui.css}" rel="stylesheet"/>
+    <link th:href="@{../css/gmark.css}" rel="stylesheet"/>
+
 </head>
-<body class="layui-layout-body">
-1111111
+<body>
+<div class="header">
+    gmark
+</div>
+<form class="layui-form" action="" style="width:80%;margin:10px auto;text-align: center;">
+    <div class="layui-form-item">
+        <label class="layui-form-label" style="width:100px">博客站点</label>
+        <div class="layui-input-inline">
+            <select lay-verify="required">
+                <option value="">请选择博客站点</option>
+                <option value="csdn">CSDN</option>
+                <option value="vx">微信公众号</option>
+                <option value="cnblogs">博客园</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label" style="width:100px">博客地址</label>
+        <div class="layui-input-block" style="margin-left:130px">
+            <input type="text" name="title" required  lay-verify="required" placeholder="请输入博客地址" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label" style="width:100px">图片保存地址</label>
+        <div class="layui-input-block" style="margin-left:130px">
+            <input type="text" name="title" required  lay-verify="required" placeholder="请输入图片保存地址" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label" style="width:100px">文中图片地址</label>
+        <div class="layui-input-block" style="margin-left:130px">
+            <input type="text" name="title" required  lay-verify="required" placeholder="请输入图片保存地址" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" id="getContent">采集内容</button>
+            <button class="layui-btn" id="copyContent">复制内容</button>
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">文本域</label>
+        <div class="layui-input-block" style="height:600px">
+            <textarea placeholder="请输入内容" class="layui-textarea" style="height:600px"></textarea>
+        </div>
+    </div>
+</form>
 </body>
-<script th:src="@{/static/layui/layui.js}"></script>
+<script th:src="@{../layui/layui.js}"></script>
+<script>
+    layui.use('form', function(){
+        var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+    });
+</script>
 </html>
