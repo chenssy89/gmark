@@ -11,3 +11,9 @@
     font-weight: bold;
     text-align: center;
 }
+
+#gmark_form{
+    width:80%;
+    margin:10px auto;
+    text-align: center;
+}

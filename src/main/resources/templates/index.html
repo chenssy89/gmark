@@ -11,11 +11,11 @@
 <div class="header">
     gmark
 </div>
-<form class="layui-form" action="" style="width:80%;margin:10px auto;text-align: center;">
+<form class="layui-form" id="gmark_form" action="/gmark/mark" method="post">
     <div class="layui-form-item">
         <label class="layui-form-label" style="width:100px">博客站点</label>
         <div class="layui-input-inline">
-            <select lay-verify="required">
+            <select name="website" id="website" required lay-verify="required">
                 <option value="">请选择博客站点</option>
                 <option value="csdn">CSDN</option>
                 <option value="vx">微信公众号</option>
@@ -27,43 +27,37 @@
     <div class="layui-form-item">
         <label class="layui-form-label" style="width:100px">博客地址</label>
         <div class="layui-input-block" style="margin-left:130px">
-            <input type="text" name="title" required  lay-verify="required" placeholder="请输入博客地址" autocomplete="off" class="layui-input">
+            <input type="text" name="blogUrl" id="blogUrl" required  lay-verify="required" placeholder="请输入博客地址" autocomplete="off" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label" style="width:100px">图片保存地址</label>
         <div class="layui-input-block" style="margin-left:130px">
-            <input type="text" name="title" required  lay-verify="required" placeholder="请输入图片保存地址" autocomplete="off" class="layui-input">
+            <input type="text" name="pictureFilePath" id="pictureFilePath" placeholder="请输入图片保存地址" autocomplete="off" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label" style="width:100px">文中图片地址</label>
         <div class="layui-input-block" style="margin-left:130px">
-            <input type="text" name="title" required  lay-verify="required" placeholder="请输入图片保存地址" autocomplete="off" class="layui-input">
+            <input type="text" name="imageUrl" id="imageUrl" placeholder="请输入图片保存地址" autocomplete="off" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" id="getContent">采集内容</button>
-            <button class="layui-btn" id="copyContent">复制内容</button>
-        </div>
-    </div>
-
-    <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">文本域</label>
-        <div class="layui-input-block" style="height:600px">
-            <textarea placeholder="请输入内容" class="layui-textarea" style="height:600px"></textarea>
+            <button class="layui-btn" lay-submit="" lay-filter="gmarkSubmit" id="getContent">采集内容</button>
+            <button class="layui-btn" type="button" id="copyContent">复制内容</button>
         </div>
     </div>
 </form>
+
+<div class="layui-form-item layui-form-text"  style="width:80%;margin:10px auto;">
+    <textarea placeholder="请输入内容" class="layui-textarea" style="height:600px"></textarea>
+</div>
 </body>
+<script th:src="@{../js/jquery-2.1.4.min.js}"></script>
 <script th:src="@{../layui/layui.js}"></script>
-<script>
-    layui.use('form', function(){
-        var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
-    });
-</script>
+<script th:src="@{../js/gmark.js}"></script>
 </html>
