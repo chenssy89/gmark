@@ -1,37 +1,13 @@
 # gmark
 
 #### 介绍
-爬虫获取文章，并将其转换为 Markdown
 
-#### 软件架构
-软件架构说明
+gmark 用于获取网络上的优质文章，并将其转换为 markdown 格式。项目采用 Spring Boot 构建，jsoup 爬虫获取博文。
 
+#### 目的
 
-#### 安装教程
+这个工程目的主要是用于构建自己的博客站点(<http://cmsblogs.com>)，刚刚开始站点只用于收录自己的原创文章，但后来自己在学习过程中，到处找各种优质的博客学习，耗时又费力，有时候还找不到，平时有些小伙伴们也找我推荐相关文章，所以在 2019 年，本站点在收录个人原创博客外，也开始收录网上优质博客，由于本站仅支持 markdown，每次转载文章时都要手动将  HTML 转换为 markdown，非常麻烦，所以小编就写了该工具，输入博客网址，即可转换相应的markdown，非常方便。
 
-1. xxxx
-2. xxxx
-3. xxxx
+软件截图如下：
 
-#### 使用说明
-
-1. xxxx
-2. xxxx
-3. xxxx
-
-#### 参与贡献
-
-1. Fork 本仓库
-2. 新建 Feat_xxx 分支
-3. 提交代码
-4. 新建 Pull Request
-
-
-#### 码云特技
-
-1. 使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2. 码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3. 你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4. [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5. 码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6. 码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+![](https://gitee.com/chenssy/blog-home/raw/7ef649f83f719404f793f309dcfb89b3ee00ac2f/image/201904/gmark.png)
