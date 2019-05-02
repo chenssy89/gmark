@@ -12,15 +12,25 @@
     gmark
 </div>
 <form class="layui-form" id="gmark_form" action="/gmark/mark" method="post">
-    <div class="layui-form-item">
-        <label class="layui-form-label" style="width:100px">博客站点</label>
-        <div class="layui-input-inline">
-            <select name="website" id="website" required lay-verify="required">
-                <option value="">请选择博客站点</option>
-                <option value="csdn">CSDN</option>
-                <option value="vx">微信公众号</option>
-                <option value="cnblogs">博客园</option>
-            </select>
+    <div class="layui-form-item" style="text-align:left">
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width:100px">博客站点</label>
+            <div class="layui-input-inline">
+                <select name="website" id="website" required lay-verify="required">
+                    <option value="">请选择博客站点</option>
+                    <option value="csdn">CSDN</option>
+                    <option value="vx">微信公众号</option>
+                    <option value="cnblogs">博客园</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <div class="layui-inline">
+                <label class="layui-form-label">图片名称</label>
+                <div class="layui-input-inline">
+                    <input type="tel" id="imageName" name="imageName" required lay-verify="required" autocomplete="off" class="layui-input">
+                </div>
+            </div>
         </div>
     </div>
 
@@ -34,7 +44,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label" style="width:100px">图片保存地址</label>
         <div class="layui-input-block" style="margin-left:130px">
-            <input type="text" name="pictureFilePath" id="pictureFilePath" placeholder="请输入图片保存地址" autocomplete="off" class="layui-input">
+            <input type="text" name="imagePath" id="imagePath" placeholder="请输入图片保存地址" autocomplete="off" class="layui-input">
         </div>
     </div>
 
@@ -54,7 +64,7 @@
 </form>
 
 <div class="layui-form-item layui-form-text"  style="width:80%;margin:10px auto;">
-    <textarea placeholder="请输入内容" class="layui-textarea" style="height:600px"></textarea>
+    <textarea id="markdownValue" placeholder="请输入内容" class="layui-textarea" style="height:600px"></textarea>
 </div>
 </body>
 <script th:src="@{../js/jquery-2.1.4.min.js}"></script>

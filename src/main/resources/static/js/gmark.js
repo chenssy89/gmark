@@ -6,13 +6,16 @@ $(function() {
 
            var website = $("#website option:selected").val();
            var blogUrl = $("#blogUrl").val();
-            var pictureFilePath = $("#pictureFilePath").val();
-            var imageUrl = $("#imageUrl").val();
+           var imagePath = $("#imagePath").val();
+           var imageUrl = $("#imageUrl").val();
+           var imageName = $("#imageName").val();
+
 
            var  params ={"website":website,
                          "blogUrl":blogUrl,
-                         "pictureFilePath": pictureFilePath,
-                         "imageUrl":imageUrl};
+                         "imagePath": imagePath,
+                         "imageUrl":imageUrl,
+                         "imageName":imageName};
            $.ajax({
                 contentType: "application/json; charset=utf-8",
                 url: data.form.action,
@@ -20,7 +23,10 @@ $(function() {
                 dataType:'json',
                 data: JSON.stringify(params),
                 success: function(responseData) {
-                    alert(responseData);
+                    alert("11111");
+                    alert(responseData.code);
+
+                    $("#markdownValue").val(responseData.markdown);
                 }
            });
 

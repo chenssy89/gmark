@@ -11,9 +11,11 @@ public class GMarkPOJO {
 
     private String blogUrl;
 
-    private String pictureFilePath;
+    private String imagePath;
 
     private String imageUrl;
+
+    private String imageName;
 
     public String getWebsite() {
         return website;
@@ -31,12 +33,12 @@ public class GMarkPOJO {
         this.blogUrl = blogUrl;
     }
 
-    public String getPictureFilePath() {
-        return pictureFilePath;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setPictureFilePath(String pictureFilePath) {
-        this.pictureFilePath = pictureFilePath;
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public String getImageUrl() {
@@ -45,5 +47,13 @@ public class GMarkPOJO {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 }
