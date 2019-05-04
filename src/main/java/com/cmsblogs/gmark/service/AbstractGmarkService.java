@@ -6,13 +6,9 @@ import com.overzealous.remark.Remark;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -61,8 +57,6 @@ public abstract class AbstractGmarkService implements GmarkService{
             handlePre(document);
         }
 
-        System.out.println(document.html());
-
         return document.html();
     }
 
@@ -76,8 +70,8 @@ public abstract class AbstractGmarkService implements GmarkService{
 
         if(GmarkUtil.elementsNotEmpty(elements)){
             for(Element element : elements){
-                element.prepend("<p>```</p>");
-                element.append("<p>```</p>");
+                element.prepend("<br/><p>```</p><br/>");
+                element.append("<br/><p>```</p><br/>");
             }
         }
     }
@@ -106,35 +100,14 @@ public abstract class AbstractGmarkService implements GmarkService{
 
     private void doHandleImg(Elements elements,GMarkPOJO gMark){
         // 下载图片
+        String imageUrl,imageSrc = "";
         int name = 1;
-        String imageFilePath,imageUrl,fileName;
-        File imageFile;
-        URL url;
-        HttpURLConnection connection;
-        InputStream is = null;
-        FileOutputStream out = null;
         for(Element element : elements){
-            fileName = gMark.getImageName() + name + ".png";
-            imageFilePath = gMark.getImagePath() + File.separator + fileName ;
-
-            imageFile = new File(imageFilePath);
-
             try {
-                imageFile.createNewFile();
 
-                url = new URL(element.attr("src"));
+                // 下载图片
+                String fileName = downImage(gMark,element,name);
 
-                // 打开网络
-                connection = (HttpURLConnection)url.openConnection();
-                //获取链接的输出流
-                is = connection.getInputStream();
-
-                //根据输入流写入文件
-                out = new FileOutputStream(imageFile);
-                int i = 0;
-                while((i = is.read()) != -1){
-                    out.write(i);
-                }
 
                 imageUrl = gMark.getImageUrl() + File.separator + fileName;
                 // 替换地址
@@ -142,25 +115,69 @@ public abstract class AbstractGmarkService implements GmarkService{
                 element.attr("alt",fileName);
 
                 name++;
-
             } catch (IOException e) {
+                System.out.println(imageSrc + "下载图片失败,cause by :" + e.getMessage());
+
                 e.printStackTrace();
-                System.out.println(e);
             }finally {
-                try {
-                    if(out != null){
-                        out.close();
-                    }
 
-                    if(is != null){
-                        is.close();
-                    }
-                } catch (IOException e) {
+            }
+        }
+    }
 
-                }
+    /**
+     *
+     * 下载图片
+     *
+     * @param gMark
+     * @param element
+     * @param name
+     * @return
+     * @throws IOException
+     */
+    private String downImage(GMarkPOJO gMark,Element element,int name) throws IOException {
+        String fileName = gMark.getImageName() + "_" + name + ".png";
+
+        File imageFile = GmarkUtil.getImageFile(gMark.getImagePath(),fileName);
+
+        String imageSrc = element.attr("src");
+
+        // 有些图片没有 http
+        if(imageSrc.startsWith("//")){
+            imageSrc = "http:" + imageSrc;
+        }
+
+        URL url = new URL(imageSrc);
+
+        // 打开网络
+        HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+
+        InputStream is = null;
+        OutputStream out = null;
+        try {
+            //获取链接的输出流
+            is = connection.getInputStream();
+
+            //根据输入流写入文件
+            out = new FileOutputStream(imageFile);
+            int i;
+            while((i = is.read()) != -1){
+                out.write(i);
             }
 
+            return imageFile.getName();
+        } finally {
+            try {
+                if(out != null){
+                    out.close();
+                }
 
+                if(is != null){
+                    is.close();
+                }
+            } catch (IOException e) {
+
+            }
         }
     }
 

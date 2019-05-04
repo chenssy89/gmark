@@ -16,6 +16,8 @@ $(function() {
                          "imagePath": imagePath,
                          "imageUrl":imageUrl,
                          "imageName":imageName};
+
+           $("#markdownValue").val("内容采集中...");
            $.ajax({
                 contentType: "application/json; charset=utf-8",
                 url: data.form.action,
@@ -23,9 +25,6 @@ $(function() {
                 dataType:'json',
                 data: JSON.stringify(params),
                 success: function(responseData) {
-                    alert("11111");
-                    alert(responseData.code);
-
                     $("#markdownValue").val(responseData.markdown);
                 }
            });
