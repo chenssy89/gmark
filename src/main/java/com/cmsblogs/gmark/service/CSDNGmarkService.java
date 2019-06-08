@@ -11,7 +11,14 @@ public class CSDNGmarkService extends AbstractGmarkService{
 
     @Override
     protected Document getHtmlContent(Document document) {
-        String htmlContent = document.getElementById("mainBox").getElementById("content_views").html();
+        Element mainElement = document.getElementById("mainBox");
+
+        // 不是 Markdown，则获取 HTML
+        if(mainElement == null){
+            mainElement = document.getElementById("htmledit_views");
+        }
+
+        String htmlContent = mainElement.getElementById("content_views").html();
 
         document = Jsoup.parse(htmlContent);
 

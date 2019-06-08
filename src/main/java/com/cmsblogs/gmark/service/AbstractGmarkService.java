@@ -3,6 +3,7 @@ package com.cmsblogs.gmark.service;
 import com.cmsblogs.gmark.pojo.GMarkPOJO;
 import com.cmsblogs.gmark.utils.GmarkUtil;
 import com.overzealous.remark.Remark;
+import com.sun.javafx.iio.ImageStorageException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -141,6 +142,11 @@ public abstract class AbstractGmarkService implements GmarkService{
         File imageFile = GmarkUtil.getImageFile(gMark.getImagePath(),fileName);
 
         String imageSrc = element.attr("src");
+
+        // 如果不存在 src，则尝试获取 data-src
+        if(imageSrc == null || "".equals(imageSrc.trim())){
+            imageSrc = element.attr("data-src");
+        }
 
         // 有些图片没有 http
         if(imageSrc.startsWith("//")){

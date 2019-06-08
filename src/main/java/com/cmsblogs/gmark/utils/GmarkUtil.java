@@ -44,7 +44,7 @@ public class GmarkUtil {
            //获取 _ 前面一位数字
            j = Integer.valueOf(imageFileName.substring(i - 1 , i));
 
-           imageFileName = imageFileName.substring(0,i - 1) + (j + 1 ) + "_" + imageFileName.substring(i);
+           imageFileName = imageFileName.substring(0,i - 1) + (j + 1 ) + imageFileName.substring(i);
 
            imageFile = new File(imageFilePath + File.separator + imageFileName);
        }

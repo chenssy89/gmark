@@ -23,6 +23,7 @@ public class GmarkFactory {
     private static Map<String,GmarkService> gmarkServiceMap = new HashMap<String,GmarkService>(){
         {
             put("csdn",new CSDNGmarkService());
+            put("vx",new WeiXinGmarkService());
         }
     };
 
